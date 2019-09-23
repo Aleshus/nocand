@@ -9,8 +9,8 @@ import "C"
 import "fmt"
 import "encoding/hex"
 import "github.com/omzlo/clog"
-import "github.com/omzlo/nocand/models/can"
-import "github.com/omzlo/nocand/models/device"
+import "github.com/Aleshus/nocand/models/can"
+import "github.com/Aleshus/nocand/models/device"
 import "sync"
 import "time"
 
@@ -322,10 +322,10 @@ func DriverInitialize(reset bool, speed uint) (*device.Info, error) {
 	}
 	clog.Info("Driver signature verified.")
 	C.setup_interrupts()
-  if C.digitalReadRx() == 0 {
-    CanRxInterrupt()
-    clog.Warning("RX line was in an unexpected state. Nocand attempted to correct the issue.")
-  }
+	if C.digitalReadRx() == 0 {
+		CanRxInterrupt()
+		clog.Warning("RX line was in an unexpected state. Nocand attempted to correct the issue.")
+	}
 
 	DriverReady = true
 

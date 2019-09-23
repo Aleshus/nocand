@@ -2,7 +2,7 @@ package models
 
 import (
 	"errors"
-	"github.com/omzlo/nocand/models/nocan"
+	"github.com/Aleshus/nocand/models/nocan"
 	"sync"
 	"time"
 )

@@ -2,12 +2,12 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/Aleshus/nocand/models"
+	"github.com/Aleshus/nocand/models/can"
+	"github.com/Aleshus/nocand/models/network"
+	"github.com/Aleshus/nocand/models/nocan"
+	"github.com/Aleshus/nocand/socket"
 	"github.com/omzlo/clog"
-	"github.com/omzlo/nocand/models"
-	"github.com/omzlo/nocand/models/can"
-	"github.com/omzlo/nocand/models/nocan"
-	"github.com/omzlo/nocand/models/rpi"
-	"github.com/omzlo/nocand/socket"
 	"strconv"
 	"time"
 )
@@ -82,7 +82,7 @@ func (nc *NocanNetworkController) SendMessage(msg *nocan.Message) error {
 			frame.CanId |= nocan.NOCANID_MASK_LAST
 		}
 		copy(frame.Data[:], msg.Data[pos:pos+frame.Dlc])
-		if err := rpi.DriverSendCanFrame(frame); err != nil {
+		if err := network.DriverSendCanFrame(frame); err != nil {
 			return err
 		}
 		pos += frame.Dlc
@@ -148,7 +148,7 @@ func (nc *NocanNetworkController) Serve() error {
 	go nc.handleMasterNode()
 
 	for {
-		frame := <-rpi.CanRxChannel
+		frame := <-network.CanRxChannel
 
 		nodeId := (frame.CanId >> 21) & 0x7F
 

@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"github.com/omzlo/nocand/models/nocan"
+	"github.com/Aleshus/nocand/models/nocan"
 	"strings"
 	"sync"
 	"time"

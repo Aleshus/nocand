@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/omzlo/nocand/models"
-	"github.com/omzlo/nocand/models/nocan"
+	"github.com/Aleshus/nocand/models"
+	"github.com/Aleshus/nocand/models/nocan"
 	"time"
 )
 

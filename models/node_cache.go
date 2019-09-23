@@ -2,9 +2,9 @@ package models
 
 import (
 	"encoding/json"
+	"github.com/Aleshus/nocand/models/helpers"
+	"github.com/Aleshus/nocand/models/nocan"
 	"github.com/omzlo/clog"
-	"github.com/omzlo/nocand/models/helpers"
-	"github.com/omzlo/nocand/models/nocan"
 	"os"
 	"sort"
 	"time"

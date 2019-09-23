@@ -2,11 +2,11 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/Aleshus/nocand/models"
+	"github.com/Aleshus/nocand/models/nocan"
+	"github.com/Aleshus/nocand/models/properties"
+	"github.com/Aleshus/nocand/socket"
 	"github.com/omzlo/clog"
-	"github.com/omzlo/nocand/models"
-	"github.com/omzlo/nocand/models/nocan"
-	"github.com/omzlo/nocand/models/properties"
-	"github.com/omzlo/nocand/socket"
 	"time"
 )
 

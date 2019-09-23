@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/omzlo/nocand/models"
-	"github.com/omzlo/nocand/models/nocan"
-	"github.com/omzlo/nocand/socket"
+	"github.com/Aleshus/nocand/models"
+	"github.com/Aleshus/nocand/models/nocan"
+	"github.com/Aleshus/nocand/socket"
 	"hash/crc32"
 )
 

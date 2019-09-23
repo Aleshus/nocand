@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"github.com/Aleshus/nocand/models/device"
+	"github.com/Aleshus/nocand/models/network"
+	"github.com/Aleshus/nocand/models/rpi"
+
+	"github.com/Aleshus/nocand/socket"
 	"github.com/omzlo/clog"
-	"github.com/omzlo/nocand/models/device"
-	"github.com/omzlo/nocand/models/rpi"
-	"github.com/omzlo/nocand/socket"
 	"time"
 )
 
@@ -22,8 +24,8 @@ func MilliAmpEstimation(c uint16) uint {
 }
 
 func (nc *NocanNetworkController) RequestPowerStatusUpdate() {
-	if rpi.DriverReady {
-		ps, err := rpi.DriverUpdatePowerStatus()
+	if network.DriverReady {
+		ps, err := network.DriverUpdatePowerStatus()
 		if err != nil {
 			clog.Warning("Failed to read driver power status: %s", err)
 		} else {
@@ -43,13 +45,13 @@ func (nc *NocanNetworkController) RunPowerMonitor(interval time.Duration) {
 }
 
 func (nc *NocanNetworkController) Initialize(with_reset bool, spi_speed uint) error {
-	di, err := rpi.DriverInitialize(with_reset, spi_speed)
+	di, err := network.DriverInitialize(with_reset, spi_speed)
 	DeviceInfo = di
 	return err
 }
 
 func (nc *NocanNetworkController) SetPower(power_on bool) {
-	rpi.DriverSetPower(power_on)
+	network.DriverSetPower(power_on)
 	if power_on == false {
 		Nodes.Clear()
 	}
@@ -57,6 +59,6 @@ func (nc *NocanNetworkController) SetPower(power_on bool) {
 }
 
 func (nci *NocanNetworkController) SetCurrentLimit(limit uint16) {
-	rpi.DriverSetCurrentLimit(limit)
+	network.DriverSetCurrentLimit(limit)
 	clog.DebugX("Driver current limit set to %d (~ %d mA)", limit, MilliAmpEstimation(limit))
 }

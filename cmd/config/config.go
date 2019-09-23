@@ -1,8 +1,8 @@
 package config
 
 import (
+	"github.com/Aleshus/nocand/models/helpers"
 	"github.com/omzlo/clog"
-	"github.com/omzlo/nocand/models/helpers"
 )
 
 type Configuration struct {
