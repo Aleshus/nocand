@@ -8,7 +8,6 @@ import (
 	"github.com/Aleshus/nocand/models/device"
 	"golang.org/x/sys/unix"
 	"net"
-	"time"
 )
 
 var fd = 0
@@ -70,15 +69,6 @@ func init() {
 	go func() {
 		for {
 			frame := <-CanTxChannel
-			start := time.Now()
-			for C.digitalReadTx() == 0 {
-				now := time.Now()
-				for C.digitalReadTx() == 0 && time.Since(now).Seconds() < 3 {
-				}
-				if C.digitalReadTx() == 0 {
-					clog.Warning("Microcontroller transmission has been blocking for more than %d seconds on frame %s.", int(time.Since(start).Seconds()), frame)
-				}
-			}
 
 			buf := make([]byte, can.FRAME_LEN)
 
