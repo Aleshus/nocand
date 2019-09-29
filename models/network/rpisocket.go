@@ -49,6 +49,7 @@ func main() {
 	fd, _ := unix.Socket(unix.AF_CAN, unix.SOCK_RAW, unix.CAN_RAW)
 	addr := &unix.SockaddrCAN{Ifindex: iface.Index}
 	unix.Bind(fd, addr)
+
 	frame := make([]byte, 16)
 	// frame[0:3]: ID (LSB primero)
 	// frame[4]: largo

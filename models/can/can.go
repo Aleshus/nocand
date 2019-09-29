@@ -10,6 +10,8 @@ type Frame struct {
 	Data  [8]uint8
 }
 
+const FRAME_LEN = 13
+
 const (
 	CANID_MASK_EXTENDED = (1 << 31)
 	CANID_MASK_REMOTE   = (1 << 30)
@@ -26,7 +28,7 @@ func (frame *Frame) PackValue() ([]byte, error) {
 }
 
 func EncodeFrame(frame *Frame, buf []byte) error {
-	if len(buf) < 13 {
+	if len(buf) < FRAME_LEN {
 		return fmt.Errorf("Encode buffer must be at least 13 bytes, found only %d", len(buf))
 	}
 	buf[0] = byte(frame.CanId >> 24)
@@ -48,7 +50,7 @@ func EncodeFrame(frame *Frame, buf []byte) error {
 func DecodeFrame(buf []byte) (*Frame, error) {
 	frame := new(Frame)
 
-	if len(buf) < 13 {
+	if len(buf) < FRAME_LEN {
 		return nil, fmt.Errorf("Slice length too short for decoding operation, required 13 bytes, got %d", len(buf))
 	}
 	frame.CanId = uint32(buf[0]) << 24
