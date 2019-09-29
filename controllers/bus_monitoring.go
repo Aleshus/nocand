@@ -3,8 +3,6 @@ package controllers
 import (
 	"github.com/Aleshus/nocand/models/device"
 	"github.com/Aleshus/nocand/models/network"
-	"github.com/Aleshus/nocand/models/rpi"
-
 	"github.com/Aleshus/nocand/socket"
 	"github.com/omzlo/clog"
 	"time"
